@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/xjdrew/kone/tcpip"
+	"github.com/Ubbo-Sathla/kone/tcpip"
 )
 
 type UDPTunnel struct {

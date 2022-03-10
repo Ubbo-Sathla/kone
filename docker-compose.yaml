@@ -1,0 +1,27 @@
+version: '3.8'
+x-common-service: &common-service
+  network_mode: "host"
+  restart: always
+  configs:
+    - source: localtime
+      target: /etc/localtime
+  logging:
+    driver: json-file
+    options:
+      max-size: "3m"
+      max-file: "1"
+
+configs:
+  localtime:
+    file: /etc/localtime
+
+services:
+  kone:
+    <<: *common-service
+    image: 843592242/kone:v0.2
+    build:
+      context: .
+      network: host
+    container_name: kone
+    privileged: true
+

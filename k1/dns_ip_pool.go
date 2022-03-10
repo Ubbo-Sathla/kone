@@ -9,7 +9,7 @@ import (
 	"hash/adler32"
 	"net"
 
-	"github.com/xjdrew/kone/tcpip"
+	"github.com/Ubbo-Sathla/kone/tcpip"
 )
 
 const DnsIPPoolMaxSpace = 0x3ffff // 4*65535
