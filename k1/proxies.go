@@ -8,10 +8,9 @@ package k1
 import (
 	"errors"
 	"fmt"
+	"github.com/Ubbo-Sathla/kone/proxy"
 	"net"
 	"strings"
-
-	"github.com/xjdrew/proxy"
 )
 
 var errNoProxy = errors.New("no proxy")
