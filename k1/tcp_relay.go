@@ -135,9 +135,7 @@ func (r *TCPRelay) Serve() error {
 // redirect tcp packet to relay
 func (r *TCPRelay) Filter(wr io.Writer, ipPacket tcpip.IPv4Packet) {
 	tcpPacket := tcpip.TCPPacket(ipPacket.Payload())
-	logger.Debugf("package header len: %d", ipPacket.HeaderLen())
-	logger.Debugf("package total len: %d", ipPacket.TotalLen())
-	logger.Debugf("package Payload byte: %s", ipPacket.Payload())
+
 	srcIP := ipPacket.SourceIP()
 	dstIP := ipPacket.DestinationIP()
 	srcPort := tcpPacket.SourcePort()
