@@ -25,7 +25,7 @@ func icmpFilterFunc(wr io.Writer, ipPacket tcpip.IPv4Packet) {
 	icmpPacket := tcpip.ICMPPacket(ipPacket.Payload())
 	logger.Debugf("package header len: %d", ipPacket.HeaderLen())
 	logger.Debugf("package total len: %d", ipPacket.TotalLen())
-	logger.Debugf("package Payload byte: %s", ipPacket.Payload())
+	logger.Debugf("package Payload byte: %x", ipPacket.Payload())
 
 	if icmpPacket.Type() == tcpip.ICMPRequest && icmpPacket.Code() == 0 {
 		logger.Debugf("icmp echo request: %s -> %s", ipPacket.SourceIP(), ipPacket.DestinationIP())
