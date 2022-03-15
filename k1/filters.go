@@ -23,6 +23,8 @@ func (f PacketFilterFunc) Filter(wr io.Writer, p tcpip.IPv4Packet) {
 
 func icmpFilterFunc(wr io.Writer, ipPacket tcpip.IPv4Packet) {
 	icmpPacket := tcpip.ICMPPacket(ipPacket.Payload())
+	logger.Debugf("package header len: %d", ipPacket.HeaderLen())
+	logger.Debugf("package total len: %d", ipPacket.TotalLen())
 	if icmpPacket.Type() == tcpip.ICMPRequest && icmpPacket.Code() == 0 {
 		logger.Debugf("icmp echo request: %s -> %s", ipPacket.SourceIP(), ipPacket.DestinationIP())
 		// forge a reply
