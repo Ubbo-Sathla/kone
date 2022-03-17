@@ -18,7 +18,7 @@ configs:
 services:
   kone:
     <<: *common-service
-    image: 843592242/kone:v0.2
+    image: 843592242/kone:v0.2m
     build:
       context: .
       network: host

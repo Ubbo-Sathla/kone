@@ -6,10 +6,10 @@
 package k1
 
 import (
+	"github.com/google/gopacket/layers"
 	"net"
 
 	. "github.com/Ubbo-Sathla/kone/internal"
-	"github.com/Ubbo-Sathla/kone/tcpip"
 )
 
 var logger = GetLogger()
@@ -83,10 +83,10 @@ func FromConfig(cfg *KoneConfig) (*One, error) {
 	one.tcpRelay = NewTCPRelay(one, cfg.TCP)
 	one.udpRelay = NewUDPRelay(one, cfg.UDP)
 
-	filters := map[tcpip.IPProtocol]PacketFilter{
-		tcpip.ICMP: PacketFilterFunc(icmpFilterFunc),
-		tcpip.TCP:  one.tcpRelay,
-		tcpip.UDP:  one.udpRelay,
+	filters := map[layers.IPProtocol]PacketFilter{
+		layers.IPProtocolICMPv4: PacketFilterFunc(icmpFilterFunc),
+		layers.IPProtocolTCP:    one.tcpRelay,
+		layers.IPProtocolUDP:    one.udpRelay,
 	}
 
 	if one.tun, err = NewTunDriver(ip, subnet, filters); err != nil {

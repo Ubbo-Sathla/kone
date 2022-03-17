@@ -9,6 +9,7 @@ import (
 	"io"
 
 	"github.com/Ubbo-Sathla/kone/tcpip"
+	"github.com/google/gopacket/layers"
 )
 
 type PacketFilter interface {
@@ -23,10 +24,10 @@ func (f PacketFilterFunc) Filter(wr io.Writer, p tcpip.IPv4Packet) {
 
 func icmpFilterFunc(wr io.Writer, ipPacket tcpip.IPv4Packet) {
 	icmpPacket := tcpip.ICMPPacket(ipPacket.Payload())
-	if icmpPacket.Type() == tcpip.ICMPRequest && icmpPacket.Code() == 0 {
+	if icmpPacket.Type() == layers.ICMPv4TypeEchoRequest && icmpPacket.Code() == 0 {
 		logger.Debugf("icmp echo request: %s -> %s", ipPacket.SourceIP(), ipPacket.DestinationIP())
 		// forge a reply
-		icmpPacket.SetType(tcpip.ICMPEcho)
+		icmpPacket.SetType(layers.ICMPv4TypeEchoReply)
 		srcIP := ipPacket.SourceIP()
 		dstIP := ipPacket.DestinationIP()
 		ipPacket.SetSourceIP(dstIP)

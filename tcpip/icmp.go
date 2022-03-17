@@ -11,11 +11,6 @@ import (
 
 type ICMPType byte
 
-const (
-	ICMPEcho    ICMPType = 0x0
-	ICMPRequest          = 0x8
-)
-
 type ICMPPacket []byte
 
 func (p ICMPPacket) Type() ICMPType {

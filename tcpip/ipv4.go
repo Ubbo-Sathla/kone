@@ -7,15 +7,8 @@ package tcpip
 
 import (
 	"encoding/binary"
+	"github.com/google/gopacket/layers"
 	"net"
-)
-
-type IPProtocol byte
-
-const (
-	ICMP IPProtocol = 0x01
-	TCP             = 0x06
-	UDP             = 0x11
 )
 
 type IPv4Packet []byte
@@ -36,8 +29,8 @@ func (p IPv4Packet) Payload() []byte {
 	return p[p.HeaderLen():p.TotalLen()]
 }
 
-func (p IPv4Packet) Protocol() IPProtocol {
-	return IPProtocol(p[9])
+func (p IPv4Packet) Protocol() layers.IPProtocol {
+	return layers.IPProtocol(p[9])
 }
 
 func (p IPv4Packet) SourceIP() net.IP {
