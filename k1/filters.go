@@ -8,7 +8,7 @@ package k1
 import (
 	"io"
 
-	"github.com/xjdrew/kone/tcpip"
+	"github.com/Ubbo-Sathla/kone/tcpip"
 )
 
 type PacketFilter interface {

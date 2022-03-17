@@ -9,7 +9,7 @@ import (
 	"hash/adler32"
 	"net"
 
-	"github.com/xjdrew/kone/tcpip"
+	"github.com/Ubbo-Sathla/kone/tcpip"
 )
 
 const DnsIPPoolMaxSpace = 0x3ffff // 4*65535
@@ -61,7 +61,7 @@ func (pool *DnsIPPool) Alloc(tips string) net.IP {
 
 func NewDnsIPPool(ip net.IP, subnet *net.IPNet) *DnsIPPool {
 	base := tcpip.ConvertIPv4ToUint32(subnet.IP) + 1
-	max := base + ^tcpip.ConvertIPv4ToUint32(net.IP(subnet.Mask))
+	max := base + ^tcpip.ConvertIPv4ToUint32(net.IP(subnet.Mask)) - 2
 
 	// space should not over 0x3ffff
 	space := max - base

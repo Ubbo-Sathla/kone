@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"os"
 
-	. "github.com/xjdrew/kone/internal"
-	"github.com/xjdrew/kone/k1"
+	. "github.com/Ubbo-Sathla/kone/internal"
+	"github.com/Ubbo-Sathla/kone/k1"
 )
 
 var VERSION = "0.2-dev"

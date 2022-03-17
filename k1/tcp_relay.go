@@ -10,7 +10,7 @@ import (
 	"io"
 	"net"
 
-	"github.com/xjdrew/kone/tcpip"
+	"github.com/Ubbo-Sathla/kone/tcpip"
 )
 
 type halfCloseConn interface {
