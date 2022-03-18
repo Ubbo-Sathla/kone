@@ -139,11 +139,6 @@ func (r *TCPRelay) Filter(wr io.Writer, ipPacket tcpip.IPv4Packet) {
 	p := gopacket.NewPacket(ipPacket, layers.LayerTypeIPv4, gopacket.DecodeOptions{Lazy: true, NoCopy: true})
 
 	tcpPacket := tcpip.TCPPacket(ipPacket.Payload())
-	//
-	//srcIP := p.NetworkLayer().(*layers.IPv4).SrcIP
-	//dstIP := p.NetworkLayer().(*layers.IPv4).DstIP
-	//srcPort := p.TransportLayer().(*layers.TCP).SrcPort
-	//dstPort := p.TransportLayer().(*layers.TCP).DstPort
 
 	srcIP := ipPacket.SourceIP()
 	dstIP := ipPacket.DestinationIP()
